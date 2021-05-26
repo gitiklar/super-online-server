@@ -23,7 +23,7 @@ mongoose.connect('mongodb+srv://admin:admin@cluster0.mkibu.mongodb.net/super-onl
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use(cors({ origin: ["http://localhost:8080"], useCredentials: true, }));
+app.use(cors({ origin: ["https://super-online-client.herokuapp.com","http://localhost:8080"], useCredentials: true, }));
 app.use('/uploads', express.static('uploads'));
 
 app.use(checkAccessToken);
