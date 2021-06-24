@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const  fs = require('fs');
 require('dotenv/config');
 
 const userRouter = require('./routers/user-router');
@@ -25,6 +26,19 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(cors({ origin: ["https://super-online-client.herokuapp.com","http://localhost:8080"], useCredentials: true, }));
 app.use('/uploads', express.static('uploads'));
+app.use('/list', ()=>{
+    fs.readdir(
+        path.resolve(__dirname, 'uploads'),
+        (err, files) => {
+          if (err) throw err;
+          
+          for (let file of files) {
+            console.log(file);
+          }
+        }
+      );
+
+});
 
 app.use(checkAccessToken);
 
